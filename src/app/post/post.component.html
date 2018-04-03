@@ -1,0 +1,3 @@
+<div *ngFor="let posts of lista_posts">
+    <app-posts [posts] = "posts" (receber)="quem($event)"></app-posts>
+</div>

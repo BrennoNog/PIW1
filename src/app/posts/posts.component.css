@@ -1,0 +1,16 @@
+.mensagem{
+    background-color: #ECECEC;
+    display: inline-block;
+    margin: 10px;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.nome{
+    color: #606060;
+}
+
+.fala{
+    color: #515151
+}
+

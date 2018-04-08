@@ -1,0 +1,14 @@
+.campos{
+    display: flex;
+    align-content: center;
+}
+
+#texto{
+    width: 500px;
+
+}
+
+#but{
+    text-align: right;
+    margin-left: 10px;
+}

@@ -1,3 +1,4 @@
+import { PostService } from './../post/post.service';
 import {Posts} from './posts-model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
@@ -10,7 +11,7 @@ export class PostsComponent implements OnInit {
 
   @Input() posts: Posts;
 
-  constructor() { }
+  constructor(private postservice: PostService) { }
 
   ngOnInit() {
   }
@@ -24,10 +25,8 @@ export class PostsComponent implements OnInit {
 
   }
 
-  apagou(){
-    event.preventDefault();
-    console.log("adeus");
-    this.receber.emit(this.posts);
+  apagou(id){
+    this.postservice.delcurso(id);
   }
 
 

@@ -1,24 +1,29 @@
 import {Posts} from './../posts/posts-model';
 import { Component, OnInit, Input } from '@angular/core';
+import { PostService } from './post.service';
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  styleUrls: ['./post.component.css']//,
+  //providers: [PostService]
 })
 export class PostComponent implements OnInit {
 
-  @Input() lista_posts: Posts[] = [
-    new Posts(1,"Marcos","deu certo",0),
-    new Posts(2,"juliano","deu?",0),
-  ];
+  @Input()
+  postservice: PostService;
 
   quem(e){
     console.log(e);
   }
-  constructor() { }
+  lista_posts = [];
+
+  constructor(_postservice: PostService) { 
+    this.postservice = _postservice;
+  }
 
   ngOnInit() {
+    this.lista_posts = this.postservice.getposts();
   }
 
 }

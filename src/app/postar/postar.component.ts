@@ -1,4 +1,4 @@
-import { PostService } from './../post/post.service';
+import { PostService } from './../post/post.service'; //importa serviços do post
 import { Component, OnInit } from '@angular/core';
 import {Posts} from './../posts/posts-model';
 
@@ -11,19 +11,23 @@ import {Posts} from './../posts/posts-model';
 })
 export class PostarComponent implements OnInit {
 
-  constructor(private postservice: PostService) { }
+  constructor(private postservice: PostService) { } // para usar os serviços do post
 
   ngOnInit() {
   }
 
 
-    postar(texto1:string,texto2:string){
-      let n = this.postservice.getposts();
-      console.log(n.length);
-      this.postservice.addcurso(new Posts(n.length+1,texto2,texto1,0));
+  getPosts(){
+    this.postservice.getposts()
+      .subscribe((data)=>console.log(data))
+  }
+
+    postar(texto1:string,texto2:string){ //função recebe texto1( nome ) e texto2( fala )
+      
+      this.postservice.addcurso(new Posts(1,texto2,texto1,0)) //usa serviço addcurso para enviar dados do post e add no servidor
+      .subscribe((data)=>this.getPosts())
       
 
-  
     }
   
 

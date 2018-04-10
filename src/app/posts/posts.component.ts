@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { PostService } from './../post/post.service';
 import {Posts} from './posts-model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -10,6 +11,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class PostsComponent implements OnInit {
 
   @Input() posts: Posts;
+  @Input() lista_posts: Posts[];
 
   constructor(private postservice: PostService) { }
 
@@ -18,15 +20,24 @@ export class PostsComponent implements OnInit {
 
   @Output() receber = new EventEmitter();
 
-  clicou(){
+  clicou(){ 
     event.preventDefault();
     this.posts.likes++;
     this.receber.emit(this.posts);
 
   }
 
-  apagou(id){
-    this.postservice.delcurso(id);
+
+  getPosts(){
+    this.lista_posts = [];
+    this.postservice.getposts()
+      .subscribe((data) => { this.lista_posts = data}, (error)=> console.log(error));
+  }
+
+  apagou(post:Posts){ //recebe post 
+    event.preventDefault();
+    this.postservice.delcurso(post) //usa serviço do Post para apagar post recebido
+      .subscribe((data)=>{console.log("deu?");this.getPosts()})
   }
 
 

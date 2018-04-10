@@ -4,8 +4,8 @@ import { PostarComponent } from "./postar/postar.component";
 
 const APP_ROUTES: Routes = [
     
-    {path:"", redirectTo: "/post", pathMatch: "full"},
-    {path:"post", component: PostComponent},
-    {path:"postar", component: PostarComponent}
+    {path:"", redirectTo: "/post", pathMatch: "full"}, //caso não tenha dados depois do /
+    {path:"post", component: PostComponent}, // leva para a linha do tempo
+    {path:"postar", component: PostarComponent} // leva para a tela de postar
 ]
 export const routing = RouterModule.forRoot(APP_ROUTES);
